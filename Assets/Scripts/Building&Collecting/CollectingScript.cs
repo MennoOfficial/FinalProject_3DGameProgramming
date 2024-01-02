@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class CollectingScript : MonoBehaviour
 {
-    public MaterialManager manager;
     public GameObject UI;
     public GameObject toCollect;
+    public List<MetalType> metalTypes;
 
     private bool InRange = false;
-    // Start is called before the first frame update
+
+    public enum MetalType
+    {
+        Metal,
+        Plastic,
+        Rubber
+    }
     void Start()
     {
         UI.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (InRange) UI.SetActive(true);
@@ -25,7 +30,10 @@ public class CollectingScript : MonoBehaviour
             gameObject.SetActive(false);
             toCollect.SetActive(false);
             UI.SetActive(false);
-            manager.metalCount++;
+            foreach (var metal in metalTypes)
+            {
+                UpdateMaterials(metal);
+            }
         }
 
     }
@@ -37,5 +45,23 @@ public class CollectingScript : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player")) InRange = false;
+    }
+
+    private void UpdateMaterials(MetalType metalType)
+    {
+        switch (metalType)
+        {
+            case MetalType.Metal:
+                MaterialManager.Instance.metalCount++;
+                break;
+            case MetalType.Plastic:
+                //MaterialManager.Instance.plasticCount++;
+                break;
+            case MetalType.Rubber:
+                MaterialManager.Instance.rubberCount++;
+                break;
+            default:
+                break;
+        }
     }
 }

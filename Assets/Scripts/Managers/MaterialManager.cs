@@ -5,9 +5,24 @@ using TMPro;
 
 public class MaterialManager: MonoBehaviour
 {
+    public static MaterialManager Instance { get; private set; }
     public int metalCount;
     public TMP_Text metalText;
-    // Start is called before the first frame update
+
+    public int rubberCount;
+    public TMP_Text RubberText;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         
@@ -17,5 +32,6 @@ public class MaterialManager: MonoBehaviour
     void Update()
     {
         metalText.text = "Metal = " + metalCount.ToString();
+        RubberText.text = "Rubber = " + rubberCount.ToString();
     }
 }
