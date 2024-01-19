@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
+using TMPro;
+using UnityEngine.UI;
+using DentedPixel;
 
 public class Gun : MonoBehaviour
 {
@@ -11,20 +10,32 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform muzzle;
+    [SerializeField] private TextMeshProUGUI ammoText;
+    [SerializeField] private Image reloadBar;
+    [SerializeField] private Image Bar;
     float timeSinceLastShot;
-
     public Camera fpsCam;
+    public TextMeshProUGUI Text;
 
-    public void Start()
+    void Start()
     {
+        gunData.currentAmmo = gunData.magSize;
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += StartReload;
-
+        Text = FindObjectOfType<TextMeshProUGUI>();
         gunshotParticles = GetComponentsInChildren<ParticleSystem>();
+        UpdateUI();
     }
+
+    private void UpdateUI()
+    {
+        ammoText.text = $"{gunData.currentAmmo}/{gunData.magSize}";
+        Bar.gameObject.SetActive(gunData.reloading);
+    }
+
     public void StartReload()
     {
-        if (!gunData.reloading)
+        if (!gunData.reloading && gunData.currentAmmo != gunData.magSize)
         {
             StartCoroutine(Reload());
         }
@@ -32,11 +43,24 @@ public class Gun : MonoBehaviour
 
     private IEnumerator Reload()
     {
+        float startTime = Time.time;  // Record the start time of the reload
         gunData.reloading = true;
-        yield return new WaitForSeconds(gunData.reloadTime);
+        UpdateUI();
+
+        while (Time.time - startTime < gunData.reloadTime)
+        {
+            float progress = Mathf.Clamp01((Time.time - startTime/gunData.reloadTime));
+            reloadBar.transform.localScale = new Vector3(progress, 1, 1);
+            yield return null;
+        }
+
         gunData.currentAmmo = gunData.magSize;
         gunData.reloading = false;
+        UpdateUI();
     }
+
+
+
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
 
     public void Shoot()
@@ -52,18 +76,21 @@ public class Gun : MonoBehaviour
                     damageable?.Damage(gunData.damage);
                     Debug.Log(hit.transform.name);
                 }
+
                 foreach (ParticleSystem particleSystem in gunshotParticles)
                 {
-                        particleSystem.Play();
+                    particleSystem.Play();
                 }
-            gunData.currentAmmo--;
-            timeSinceLastShot = 0;
+
+                gunData.currentAmmo--;
+                timeSinceLastShot = 0;
                 GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(impactGO, 2f);
-
+                UpdateUI();
             }
         }
     }
+
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
