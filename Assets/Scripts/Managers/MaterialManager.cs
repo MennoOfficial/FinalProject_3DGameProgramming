@@ -31,7 +31,7 @@ public class MaterialManager: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        metalText.text = "Metal = " + metalCount.ToString();
-        RubberText.text = "Rubber = " + rubberCount.ToString();
+        metalText.text = metalCount.ToString();
+        RubberText.text = rubberCount.ToString();
     }
 }
