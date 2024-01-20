@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using DentedPixel;
 
 public class Gun : MonoBehaviour
 {
