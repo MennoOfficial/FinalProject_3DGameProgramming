@@ -12,17 +12,21 @@ public class Obstacle : MonoBehaviour
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
+            //Debug.Log("Contact");
+
             if (playerHealth != null)
             {
-                if (playerHealth.health > 0)
+                if (playerHealth.health - damage > 0)
                 {
                     playerHealth.Damage(damage);
                 }
-                else
+                else 
                 {
+                    playerHealth.Damage(playerHealth.health);
                     KillPlayer();
                 }
             }
+
         }
 
         // Testing damage + HP

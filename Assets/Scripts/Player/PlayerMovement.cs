@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 velocity;
     private bool isGrounded;
+    private Camera activeCamera;
+
+    void Start()
+    {
+        activeCamera = Camera.main;
+    }
 
     void Update()
     {
@@ -33,7 +39,10 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : normalSpeed;
+        // Check if there is any movement input before allowing sprinting
+        bool isMoving = (x != 0 || z != 0);
+
+        float currentSpeed = isMoving && Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : normalSpeed;
         controller.Move((move * currentSpeed + velocity) * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -44,6 +53,15 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         // Adjust FOV based on sprinting
-        Camera.main.fieldOfView = Input.GetKey(KeyCode.LeftShift) ? sprintFOV : normalFOV;
+        if (activeCamera != null)
+        {
+            activeCamera.fieldOfView = Input.GetKey(KeyCode.LeftShift) && isMoving ? sprintFOV : normalFOV;
+        }
+    }
+
+
+    public void SetActiveCamera(Camera newActiveCamera)
+    {
+        activeCamera = newActiveCamera;
     }
 }
