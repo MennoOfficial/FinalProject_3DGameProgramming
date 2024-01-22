@@ -14,13 +14,34 @@ public class Obstacle : MonoBehaviour
 
             if (playerHealth != null)
             {
-                playerHealth.Damage(damage);
-            }
-            else if (playerHealth.health <= 0)
-            {
-                KillPlayer();
+                if (playerHealth.health > 0)
+                {
+                    playerHealth.Damage(damage);
+                }
+                else
+                {
+                    KillPlayer();
+                }
             }
         }
+
+        // Testing damage + HP
+/*        if (other.CompareTag("Target"))
+        {
+            Target target = other.GetComponent<Target>();
+
+            if (target != null)
+            {
+                if (target.health > 0)
+                {
+                    target.Damage(damage);
+                }
+                else
+                {
+                    Debug.Log("Target has been killed");
+                }
+            }
+        }*/
     }
 
     private void KillPlayer()
