@@ -6,8 +6,8 @@ public class Target : MonoBehaviour, IDamageable
 {
     public float health = 50f;
     public GameObject CollectionBox;
-    private int score = 0;
-    static int maxScore = 10;
+    private static int score = 0;
+    private int maxScore = 10;
     public void Damage(float damage)
     {
         health -= damage;
@@ -19,7 +19,18 @@ public class Target : MonoBehaviour, IDamageable
     void Die()
     {
         score++;
+        //Debug.Log("Score:" + score);
         Destroy(gameObject);
         CollectionBox.SetActive(true);
+
+        if (score == maxScore)
+        {
+            addProgress();
+        }
+    }
+
+    void addProgress()
+    {
+        ProgressManager.Instance.UpdateProgressBar();
     }
 }
