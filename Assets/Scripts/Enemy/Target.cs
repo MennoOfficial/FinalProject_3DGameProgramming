@@ -5,6 +5,7 @@ using UnityEngine;
 public class Target : MonoBehaviour, IDamageable
 {
     public float health = 50f;
+    public GameObject CollectionBox;
     private int score = 0;
     static int maxScore = 10;
     public void Damage(float damage)
@@ -19,5 +20,6 @@ public class Target : MonoBehaviour, IDamageable
     {
         score++;
         Destroy(gameObject);
+        CollectionBox.SetActive(true);
     }
 }

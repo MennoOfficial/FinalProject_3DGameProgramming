@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollectingScript : MonoBehaviour
 {
-    public GameObject UI;
     public GameObject toCollect;
     public List<MetalType> metalTypes;
 
@@ -16,20 +15,14 @@ public class CollectingScript : MonoBehaviour
         Plastic,
         Rubber
     }
-    void Start()
-    {
-        UI.SetActive(false);
-    }
 
     void Update()
     {
-        if (InRange) UI.SetActive(true);
-        else UI.SetActive(false);
         if (Input.GetKeyDown(KeyCode.E) && InRange)
         {
             gameObject.SetActive(false);
             toCollect.SetActive(false);
-            UI.SetActive(false);
+            UIManager.Instance.HideCollectUI();
             foreach (var metal in metalTypes)
             {
                 UpdateMaterials(metal);
@@ -40,11 +33,13 @@ public class CollectingScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) InRange = true;
+        if (other.CompareTag("Player")) UIManager.Instance.ShowCollectUI();
+        InRange = true;
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) InRange = false;
+        if (other.CompareTag("Player")) UIManager.Instance.HideCollectUI();
+        InRange = false;
     }
 
     private void UpdateMaterials(MetalType metalType)

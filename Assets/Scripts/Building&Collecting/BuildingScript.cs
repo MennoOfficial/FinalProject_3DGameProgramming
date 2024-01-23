@@ -6,17 +6,9 @@ public class BuildingScript : MonoBehaviour
 {  
     public GameObject toBuild;
     public GameObject toRemove;
-    public GameObject UI;
 
     private bool InRange = false;
     private bool HasBeenBuild = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        UI.SetActive(false);
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && InRange)
@@ -25,8 +17,8 @@ public class BuildingScript : MonoBehaviour
             toRemove.SetActive(false);
             HasBeenBuild = true;
         }
-        if (!HasBeenBuild && InRange) UI.SetActive(true);
-        else UI.SetActive(false);
+        if (!HasBeenBuild && InRange) UIManager.Instance.ShowBuildUI();
+        else UIManager.Instance.HideBuildUI();
 
     }
 
