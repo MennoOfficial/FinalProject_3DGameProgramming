@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingScript : MonoBehaviour
-{  
+{
     public GameObject toBuild;
     public GameObject toRemove;
 
@@ -16,6 +17,7 @@ public class BuildingScript : MonoBehaviour
             toBuild.SetActive(true);
             toRemove.SetActive(false);
             HasBeenBuild = true;
+            ProgressManager.Instance.UpdateProgressBar();
         }
         if (!HasBeenBuild && InRange) UIManager.Instance.ShowBuildUI();
         else UIManager.Instance.HideBuildUI();
@@ -30,4 +32,5 @@ public class BuildingScript : MonoBehaviour
     {
         if (other.CompareTag("Player")) InRange = false;
     }
+
 }

@@ -12,7 +12,7 @@ public class CollectingScript : MonoBehaviour
     public enum MetalType
     {
         Metal,
-        Plastic,
+        Wood,
         Rubber
     }
 
@@ -49,8 +49,8 @@ public class CollectingScript : MonoBehaviour
             case MetalType.Metal:
                 MaterialManager.Instance.metalCount++;
                 break;
-            case MetalType.Plastic:
-                //MaterialManager.Instance.plasticCount++;
+            case MetalType.Wood:
+                MaterialManager.Instance.woodCount++;
                 break;
             case MetalType.Rubber:
                 MaterialManager.Instance.rubberCount++;

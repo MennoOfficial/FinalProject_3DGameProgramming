@@ -12,6 +12,9 @@ public class Gun : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private Image reloadBar;
     [SerializeField] private Image Bar;
+    [SerializeField] private AudioSource gunAudioSource;
+    public AudioClip shootingAudioClip;
+
     float timeSinceLastShot;
     public Camera fpsCam;
     public TextMeshProUGUI Text;
@@ -23,6 +26,8 @@ public class Gun : MonoBehaviour
         PlayerShoot.reloadInput += StartReload;
         Text = FindObjectOfType<TextMeshProUGUI>();
         gunshotParticles = GetComponentsInChildren<ParticleSystem>();
+        gunAudioSource = GetComponent<AudioSource>();
+        gunAudioSource.clip = shootingAudioClip;
         UpdateUI();
     }
 
@@ -64,6 +69,11 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
+        if (UIManager.Instance.DeathUI.activeSelf)
+        {
+            return;
+        }
+
         RaycastHit hit;
         if (gunData.currentAmmo > 0)
         {
@@ -80,6 +90,8 @@ public class Gun : MonoBehaviour
                 {
                     particleSystem.Play();
                 }
+
+                gunAudioSource.Play();
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
