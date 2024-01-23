@@ -36,6 +36,6 @@ public class MaterialManager: MonoBehaviour
     {
         metalText.text = metalCount.ToString();
         rubberText.text = rubberCount.ToString();
-        woodText.text = metalCount.ToString();
+        woodText.text = woodCount.ToString();
     }
 }
