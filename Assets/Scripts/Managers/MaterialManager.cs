@@ -10,7 +10,10 @@ public class MaterialManager: MonoBehaviour
     public TMP_Text metalText;
 
     public int rubberCount;
-    public TMP_Text RubberText;
+    public TMP_Text rubberText;
+
+    public int woodCount;
+    public TMP_Text woodText;
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class MaterialManager: MonoBehaviour
     void Update()
     {
         metalText.text = metalCount.ToString();
-        RubberText.text = rubberCount.ToString();
+        rubberText.text = rubberCount.ToString();
+        woodText.text = metalCount.ToString();
     }
 }
