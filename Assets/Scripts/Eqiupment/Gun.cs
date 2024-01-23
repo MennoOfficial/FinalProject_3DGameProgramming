@@ -69,6 +69,11 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
+        if (UIManager.Instance.DeathUI.activeSelf)
+        {
+            return;
+        }
+
         RaycastHit hit;
         if (gunData.currentAmmo > 0)
         {

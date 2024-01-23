@@ -38,4 +38,12 @@ public class MaterialManager: MonoBehaviour
         rubberText.text = rubberCount.ToString();
         woodText.text = woodCount.ToString();
     }
+
+
+    public void ResetMaterials()
+    {
+        metalCount = 0;
+        rubberCount = 0;
+        woodCount = 0;
+    }
 }

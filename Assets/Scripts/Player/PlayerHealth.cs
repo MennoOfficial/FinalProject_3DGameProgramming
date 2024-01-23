@@ -5,25 +5,37 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float health = 100f;
+    public static float health = 100f;
     public Image healthBar;
-
-    public void Damage(float damage)
+    public void TakeDamage(float damage)
     {
-        //Debug.Log(damage);
         health -= damage;
-        Debug.Log("Object hit!");
+        UpdateHealthBar();
 
+        if (health <= 0)
+        {
+            KillPlayer();
+        }
+    }
+
+    private void KillPlayer()
+    {
+        // You can implement the logic for player death here.
+        // For example, you might reload the scene, show a game over screen, etc.
+
+        UIManager.Instance.ShowDeathdUI();
+        Debug.Log("Player has been killed!");
+    }
+
+    public void ResetHealth()
+    {
+        health = 100;
         UpdateHealthBar();
     }
 
     private void UpdateHealthBar()
     {
-        // Assuming health is in the range [0, 100], adjust accordingly if it's a different range
-        float healthNormalized = health / 100f;
+        float healthNormalized = Mathf.Clamp01(health / 100f);
         healthBar.transform.localScale = new Vector3(healthNormalized, 1, 1);
     }
 }
-
-
-
