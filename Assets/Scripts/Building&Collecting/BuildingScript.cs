@@ -16,12 +16,14 @@ public class BuildingScript : MonoBehaviour
         {
             toBuild.SetActive(true);
             toRemove.SetActive(false);
+            if (!HasBeenBuild) {
+                ProgressManager.Instance.UpdateProgressBar();
+            }
             HasBeenBuild = true;
-            ProgressManager.Instance.UpdateProgressBar();
+
         }
         if (!HasBeenBuild && InRange) UIManager.Instance.ShowBuildUI();
         else UIManager.Instance.HideBuildUI();
-
     }
 
     private void OnTriggerEnter(Collider other)
