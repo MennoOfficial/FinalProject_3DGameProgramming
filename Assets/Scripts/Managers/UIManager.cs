@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject VictoryUI;
     public GameObject DeathUI;
     public GameObject ObjectivesUI;
+    public GameObject PauseUI;
     public TextMeshProUGUI Info;
 
     private void Awake()
@@ -28,12 +29,14 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
+        PauseUI.SetActive(false);
         InfoButtonUI.SetActive(false);
         InfoUI.SetActive(false);
         DeathUI.SetActive(false);
         CollectUI.SetActive(false);
         BuildUI.SetActive(false);
         VictoryUI.SetActive(false);
+        
     }
     public void ShowCollectUI()
     {
@@ -97,7 +100,14 @@ public class UIManager : MonoBehaviour
     {
         ObjectivesUI.SetActive(false);
     }
-
+    public void ShowPauseUI()
+    {
+        PauseUI.SetActive(true);
+    }
+    public void HidePauseUI()
+    {
+        PauseUI.SetActive(false);
+    }
 
     public void UpdateText(string infoText)
     {

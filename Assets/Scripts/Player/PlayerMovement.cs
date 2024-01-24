@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isDeathUIActive = false;
     private bool isInfoUIActive = false;
-
     void Start()
     {
         activeCamera = Camera.main;
@@ -32,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isDeathUIActive = UIManager.Instance.DeathUI.activeSelf;
         isInfoUIActive = UIManager.Instance.InfoUI.activeSelf;
- 
+
         if (isDeathUIActive || isInfoUIActive)
         {
 
