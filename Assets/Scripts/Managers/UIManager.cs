@@ -7,12 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
     public GameObject CollectUI;
-    public GameObject buildUI;
+    public GameObject BuildUI;
     public GameObject InfoButtonUI;
     public GameObject InfoUI;
     public GameObject VictoryUI;
     public GameObject DeathUI;
-    public TextMeshPro Info;
+    public TextMeshProUGUI Info;
+
     private void Awake()
     {
         if (Instance == null)
@@ -26,12 +27,12 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
-        DeathUI.SetActive(false);
-        CollectUI.SetActive(false);
-        buildUI.SetActive(false);
-        VictoryUI.SetActive(false);
         InfoButtonUI.SetActive(false);
         InfoUI.SetActive(false);
+        DeathUI.SetActive(false);
+        CollectUI.SetActive(false);
+        BuildUI.SetActive(false);
+        VictoryUI.SetActive(false);
     }
     public void ShowCollectUI()
     {
@@ -44,11 +45,11 @@ public class UIManager : MonoBehaviour
 
     public void ShowBuildUI()
     {
-        buildUI.SetActive(true);
+        BuildUI.SetActive(true);
     }
     public void HideBuildUI()
     {
-        buildUI.SetActive(false);
+        BuildUI.SetActive(false);
     }
 
     public void ShowInfoButtonUI()

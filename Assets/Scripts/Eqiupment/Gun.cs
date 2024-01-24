@@ -69,7 +69,7 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if (UIManager.Instance.DeathUI.activeSelf)
+        if (UIManager.Instance.DeathUI.activeSelf || UIManager.Instance.InfoUI.activeSelf)
         {
             return;
         }

@@ -17,9 +17,8 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!UIManager.Instance.DeathUI.activeSelf)
+        if (!UIManager.Instance.DeathUI.activeSelf && !UIManager.Instance.InfoUI.activeSelf)
         {
-            // Only allow mouse look if Death UI is not active
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 

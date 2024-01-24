@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera activeCamera;
 
     private bool isDeathUIActive = false;
+    private bool isInfoUIActive = false;
 
     void Start()
     {
@@ -29,11 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Check if the Death UI is active
         isDeathUIActive = UIManager.Instance.DeathUI.activeSelf;
-
-        // If Death UI is active, restrict movement and cursor
-        if (isDeathUIActive)
+        isInfoUIActive = UIManager.Instance.InfoUI.activeSelf;
+ 
+        if (isDeathUIActive || isInfoUIActive)
         {
 
             // Allow falling under gravity even when Death UI is active
