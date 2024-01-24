@@ -33,9 +33,5 @@ public class ProgressManager : MonoBehaviour
             float progress = Mathf.Clamp01((float)counter / 5f);
             progressBar.transform.localScale = new Vector3(progress, 1, 1);
         }
-        else
-        {
-            progressBar.transform.localScale = new Vector3(0, 1, 1);
-        }
     }
 }
