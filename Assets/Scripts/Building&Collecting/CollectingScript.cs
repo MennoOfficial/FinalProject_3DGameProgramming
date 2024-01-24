@@ -13,7 +13,8 @@ public class CollectingScript : MonoBehaviour
     {
         Metal,
         Wood,
-        Rubber
+        Rubber,
+        Stone
     }
 
     void Update()
@@ -54,6 +55,9 @@ public class CollectingScript : MonoBehaviour
                 break;
             case MetalType.Rubber:
                 MaterialManager.Instance.rubberCount++;
+                break;
+            case MetalType.Stone:
+                MaterialManager.Instance.stoneCount++;
                 break;
             default:
                 break;

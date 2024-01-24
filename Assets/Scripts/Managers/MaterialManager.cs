@@ -15,6 +15,9 @@ public class MaterialManager: MonoBehaviour
     public int woodCount;
     public TMP_Text woodText;
 
+    public int stoneCount;
+    public TMP_Text stoneText;
+
     private void Awake()
     {
         if (Instance == null)
@@ -37,6 +40,7 @@ public class MaterialManager: MonoBehaviour
         metalText.text = metalCount.ToString();
         rubberText.text = rubberCount.ToString();
         woodText.text = woodCount.ToString();
+        stoneText.text = stoneCount.ToString();
     }
 
 
@@ -45,5 +49,6 @@ public class MaterialManager: MonoBehaviour
         metalCount = 0;
         rubberCount = 0;
         woodCount = 0;
+        stoneCount = 0;
     }
 }

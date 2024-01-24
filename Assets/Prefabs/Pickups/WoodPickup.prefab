@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toCollect: {fileID: 462536327289897228}
-  metalTypes: 020000000000000002000000
+  metalTypes: 01000000
 --- !u!1001 &3569664148787466453
 PrefabInstance:
   m_ObjectHideFlags: 0
