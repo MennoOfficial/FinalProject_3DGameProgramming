@@ -38,18 +38,23 @@ public class ChangeCityAMbient : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            NormalLight.SetActive(true);
-            AreaLight.SetActive(false);
-            RenderSettings.ambientIntensity = 1f;
-            RenderSettings.skybox = NormalLightBox;
-            if (Fog)
-            {
-                RenderSettings.fog = false;
-            }
-            if (Rain)
-            {
-                RainObj.SetActive(false);
-            }
+            SetDefaultSettings();
+        }
+    }
+
+    public void SetDefaultSettings()
+    {
+        NormalLight.SetActive(true);
+        AreaLight.SetActive(false);
+        RenderSettings.ambientIntensity = 1f;
+        RenderSettings.skybox = NormalLightBox;
+        if (Fog)
+        {
+            RenderSettings.fog = false;
+        }
+        if (Rain)
+        {
+            RainObj.SetActive(false);
         }
     }
 }

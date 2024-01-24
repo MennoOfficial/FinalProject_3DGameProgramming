@@ -79091,6 +79091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60201b2a5e29116458af5c9488a4ab5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cityAmbient: {fileID: 1153287553}
   playerTransform: {fileID: 242563056}
 --- !u!1001 &1565582338
 PrefabInstance:

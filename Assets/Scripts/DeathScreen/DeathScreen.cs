@@ -7,9 +7,14 @@ using UnityEngine.SceneManagement;
 public class DeathScreen : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public GameObject cityAmbient;
+    ChangeCityAMbient cityAMbient;
     public Transform playerTransform;
 
+    private void Start()
+    {
+        cityAMbient = cityAmbient.GetComponent<ChangeCityAMbient>();
+    }
     public void Respawn()
     {
         PlayerHealth playerHealth = playerTransform.GetComponent<PlayerHealth>();
@@ -32,9 +37,8 @@ public class DeathScreen : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-
+            cityAMbient.SetDefaultSettings();
             UIManager.Instance.HideDeathUI();
-
         }
     }
 

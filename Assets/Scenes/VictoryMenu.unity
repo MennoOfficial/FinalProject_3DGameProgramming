@@ -323,7 +323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Helped save the planet
+  m_text: You helped save the planet!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f88fcb842ac4b5340a37e7597119b612, type: 2}
   m_sharedMaterial: {fileID: 537891849331931906, guid: f88fcb842ac4b5340a37e7597119b612,
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Victory
+  m_text: Victory!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f88fcb842ac4b5340a37e7597119b612, type: 2}
   m_sharedMaterial: {fileID: 537891849331931906, guid: f88fcb842ac4b5340a37e7597119b612,
