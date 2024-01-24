@@ -8,6 +8,15 @@ public class Target : MonoBehaviour, IDamageable
     public GameObject CollectionBox;
     private static int score = 0;
     private int maxScore = 10;
+
+    public int GetScore
+    {
+        get
+        {
+            return score;
+        }
+    }
+
     public void Damage(float damage)
     {
         health -= damage;

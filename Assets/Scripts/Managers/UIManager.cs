@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject InfoUI;
     public GameObject VictoryUI;
     public GameObject DeathUI;
+    public GameObject ObjectivesUI;
     public TextMeshProUGUI Info;
 
     private void Awake()
@@ -86,6 +87,15 @@ public class UIManager : MonoBehaviour
     public void HideDeathUI()
     {
         DeathUI.SetActive(false);
+    }
+
+    public void ShowObjectivesUI()
+    {
+        ObjectivesUI.SetActive(true);
+    }
+    public void HideObjectivesUI()
+    {
+        ObjectivesUI.SetActive(false);
     }
 
 
