@@ -24,6 +24,7 @@ public class BuildingScript : MonoBehaviour
         }
         if (!HasBeenBuild && InRange) UIManager.Instance.ShowBuildUI();
         else UIManager.Instance.HideBuildUI();
+
     }
 
     private void OnTriggerEnter(Collider other)
