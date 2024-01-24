@@ -24,14 +24,12 @@ public class UIManager : MonoBehaviour
         DeathUI.SetActive(false);
         CollectUI.SetActive(false);
         BuildUI.SetActive(false);
-        Debug.Log("Test UIMAnagerScriptStart");
     }
 
     // Update is called once per frame
     public void ShowCollectUI()
     {
         CollectUI.SetActive(true);
-        Debug.Log("UI-SetActive");
     }
     public void HideCollectUI()
     {

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BuildingScript : MonoBehaviour
 {
@@ -20,20 +17,22 @@ public class BuildingScript : MonoBehaviour
                 ProgressManager.Instance.UpdateProgressBar();
             }
             HasBeenBuild = true;
-
+            this.gameObject.SetActive(false);
+            UIManager.Instance.HideBuildUI();
         }
-        if (!HasBeenBuild && InRange) UIManager.Instance.ShowBuildUI();
-        else UIManager.Instance.HideBuildUI();
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) InRange = true;
+        UIManager.Instance.ShowBuildUI();
+        Debug.Log("InRange");
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player")) InRange = false;
+        UIManager.Instance.HideBuildUI();
+        Debug.Log("OutOfRange");
     }
 
 }
