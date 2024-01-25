@@ -9,11 +9,16 @@ public class Target : MonoBehaviour, IDamageable
     private static int score = 0;
     private int maxScore = 10;
 
-    public int GetScore
+    public int Score
     {
         get
         {
             return score;
+        }
+
+        set
+        {
+            score = value;
         }
     }
 

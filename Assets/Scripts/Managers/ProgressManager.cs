@@ -6,7 +6,7 @@ using TMPro;
 
 public class ProgressManager : MonoBehaviour
 {
-    private static int counter = 0;
+    private int counter = 0;
     public static ProgressManager Instance { get; private set; }
     public Image progressBar;
 
@@ -19,10 +19,15 @@ public class ProgressManager : MonoBehaviour
     public GameObject forestLights;
     public GameObject cityLights;
     public GameObject targets;
-    public GameObject pointer1;
-    public GameObject pointer2;
-    public GameObject pointer3;
-    public GameObject pointer4;
+
+    public GameObject pointerForest;
+    public GameObject pointerIsland;
+    public GameObject pointerCity;
+    public GameObject pointerDesert;
+    public GameObject pointerFinish;
+
+
+
     public TextMeshProUGUI objective;
 
 
@@ -48,12 +53,15 @@ public class ProgressManager : MonoBehaviour
     {
         target = targets.GetComponent<Target>();
 
-        pointer1.SetActive(false);
-        pointer2.SetActive(false);
-        pointer3.SetActive(false);
-        pointer4.SetActive(false);
+        pointerForest.SetActive(false);
+        pointerIsland.SetActive(false);
+        pointerCity.SetActive(false);
+        pointerDesert.SetActive(false);
+        pointerFinish.SetActive(false);
+
         forestLights.SetActive(false);
         cityLights.SetActive(false);
+
     }
     void Update()
     {
@@ -82,27 +90,32 @@ public class ProgressManager : MonoBehaviour
         stoneCount = MaterialManager.Instance.stoneCount;
         switch (counter) {
             case 0:
-                objective.text = $"Extinguish all fires {target.GetScore}/10";
+                objective.text = $"Extinguish all fires {target.Score}/10";
                 break;
             case 1:
                 objective.text = $"Gather materials and build watermill\n" + $"- Wood: {woodCount}/8";
-                pointer1.SetActive(true);
+                pointerForest.SetActive(true);
                 break;
             case 2:
-                objective.text = $"Gather materials and build waterwell\n" + $"- Wood: {woodCount}/2 \n" + $"- Stone: {stoneCount}/4";
+                objective.text = $"Gather materials and build waterwell\n" + $"- Wood: {woodCount}/4 \n" + $"- Stone: {stoneCount}/8";
                 forestLights.SetActive(true);
-                pointer2.SetActive(true);
+                pointerIsland.SetActive(true);
                 break;
             case 3:
-                objective.text = $"Gather materials and build windmill\n" + $"- Wood: {woodCount}/2\n" + $"- Metal: {metalCount}/8\n" + $"- Rubber: {rubberCount}/4";
-                pointer3.SetActive(true);
+                objective.text = $"Gather materials and build windmill\n" + $"- Wood: {woodCount}/4\n" + $"- Metal: {metalCount}/16\n" + $"- Rubber: {rubberCount}/8";
+                pointerCity.SetActive(true);
                 break;
             case 4:
-                objective.text = $"Gather materials and build solar panel\n" + $"- Metal: {metalCount}/8 \n" + $"- Rubber: {rubberCount}4 \n" + $"- Stone: {stoneCount}/2";
+                objective.text = $"Gather materials and build solar panel\n" + $"- Metal: {metalCount}/16 \n" + $"- Rubber: {rubberCount}/8 \n" + $"- Stone: {stoneCount}/4";
                 cityLights.SetActive(true);
-                pointer4.SetActive(true);
+                pointerDesert.SetActive(true);
+                break;
+            case 5:
+                objective.text = "Go to the island to finish the game!";
+                pointerFinish.SetActive(true);
                 break;
             default:
+                counter = 0;
                 UIManager.Instance.HideObjectivesUI();
                 break;
         }

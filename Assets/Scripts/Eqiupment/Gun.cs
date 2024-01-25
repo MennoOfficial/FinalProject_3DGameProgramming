@@ -39,6 +39,12 @@ public class Gun : MonoBehaviour
 
     public void StartReload()
     {
+        if (this == null)
+        {
+            // The Gun object has been destroyed, so we should not proceed with the reload.
+            return;
+        }
+
         if (!gunData.reloading && gunData.currentAmmo != gunData.magSize)
         {
             StartCoroutine(Reload());
@@ -69,10 +75,17 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if (UIManager.Instance.DeathUI.activeSelf || UIManager.Instance.InfoUI.activeSelf)
+        if (UIManager.Instance.DeathUI.activeSelf || UIManager.Instance.InfoUI.activeSelf || UIManager.Instance.PauseUI.activeSelf)
         {
             return;
         }
+
+        if (fpsCam == null)
+        {
+            Debug.LogWarning("fpsCam is null. Shooting cannot be performed.");
+            return;
+        }
+
 
         RaycastHit hit;
         if (gunData.currentAmmo > 0)

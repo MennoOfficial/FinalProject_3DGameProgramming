@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
     public GameObject BuildUI;
     public GameObject InfoButtonUI;
     public GameObject InfoUI;
-    public GameObject VictoryUI;
     public GameObject DeathUI;
     public GameObject ObjectivesUI;
     public GameObject PauseUI;
@@ -35,7 +34,6 @@ public class UIManager : MonoBehaviour
         DeathUI.SetActive(false);
         CollectUI.SetActive(false);
         BuildUI.SetActive(false);
-        VictoryUI.SetActive(false);
         
     }
     public void ShowCollectUI()
@@ -72,15 +70,6 @@ public class UIManager : MonoBehaviour
     public void HideInfoUI()
     {
         InfoUI.SetActive(false);
-    }
-
-    public void ShowVictoryUI()
-    {
-        VictoryUI.SetActive(true);
-    }
-    public void HideVictoryUI()
-    {
-        VictoryUI.SetActive(false);
     }
 
     public void ShowDeathdUI()
